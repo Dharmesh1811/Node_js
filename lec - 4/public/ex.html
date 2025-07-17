@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Awesome Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <nav class="bg-white shadow-md py-4 px-6 md:px-12 lg:px-24 rounded-b-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-800">MyWebsite</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300 ease-in-out">Home</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300 ease-in-out">About</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300 ease-in-out">Services</a>
+                <a href="#" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300 ease-in-out">Contact</a>
+            </div>
+            <button class="md:hidden text-gray-600 focus:outline-none" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-white bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-8">
+            <button class="absolute top-6 right-6 text-gray-800 focus:outline-none" onclick="toggleMobileMenu()">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <a href="#" class="text-gray-800 text-3xl hover:text-blue-600 font-semibold transition duration-300 ease-in-out" onclick="toggleMobileMenu()">Home</a>
+            <a href="#" class="text-gray-800 text-3xl hover:text-blue-600 font-semibold transition duration-300 ease-in-out" onclick="toggleMobileMenu()">About</a>
+            <a href="#" class="text-gray-800 text-3xl hover:text-blue-600 font-semibold transition duration-300 ease-in-out" onclick="toggleMobileMenu()">Services</a>
+            <a href="#" class="text-gray-800 text-3xl hover:text-blue-600 font-semibold transition duration-300 ease-in-out" onclick="toggleMobileMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-20 md:py-32 rounded-lg mx-4 md:mx-auto mt-8 max-w-6xl shadow-xl">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">Welcome to Our Amazing Website</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                We provide innovative solutions to help your business thrive. Discover how we can transform your ideas into reality.
+            </p>
+            <button class="bg-white text-blue-600 hover:bg-blue-100 px-8 py-4 rounded-full text-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                Learn More
+            </button>
+        </div>
+    </header>
+
+    <section class="py-16 md:py-24 bg-white mx-4 md:mx-auto mt-8 max-w-6xl rounded-lg shadow-md">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">Our Core Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-md transition duration-300 ease-in-out">
+                    <div class="text-blue-500 mb-4 text-4xl text-center">💡</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Innovative Solutions</h3>
+                    <p class="text-gray-600 text-center">
+                        We bring fresh perspectives and cutting-edge technologies to solve your toughest challenges.
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-md transition duration-300 ease-in-out">
+                    <div class="text-green-500 mb-4 text-4xl text-center">🚀</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Rapid Development</h3>
+                    <p class="text-gray-600 text-center">
+                        Our agile approach ensures quick turnaround times without compromising on quality.
+                    </p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-md transition duration-300 ease-in-out">
+                    <div class="text-purple-500 mb-4 text-4xl text-center">🤝</div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3 text-center">Dedicated Support</h3>
+                    <p class="text-gray-600 text-center">
+                        We offer continuous support and maintenance to ensure your success long-term.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-blue-600 text-white py-16 md:py-20 mx-4 md:mx-auto mt-8 max-w-6xl rounded-lg shadow-xl text-center">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
+            <p class="text-lg md:text-xl mb-8 max-w-2xl mx-auto opacity-90">
+                Join countless satisfied clients who have transformed their online presence with us.
+            </p>
+            <button class="bg-white text-blue-600 hover:bg-blue-100 px-8 py-4 rounded-full text-lg font-semibold shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+                Contact Us Today
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8 mt-8 rounded-t-lg">
+        <div class="container mx-auto text-center px-4">
+            <p class="text-gray-400">&copy; 2025 MyWebsite. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 ease-in-out">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 ease-in-out">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

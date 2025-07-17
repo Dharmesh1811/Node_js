@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Profile Edit - Trupal Patel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .details-card {
+      max-width: 600px;
+      margin: 40px auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-label i {
+      margin-right: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="card details-card p-4">
+      <h4 class="text-center mb-4">Edit Profile</h4>
+      <form id="profileForm">
+
+        <!-- Work -->
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-briefcase-fill"></i>Work</label>
+          <input type="text" class="form-control" id="work" placeholder="Enter your work experience">
+        </div>
+
+        <!-- Education -->
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-mortarboard-fill"></i>University</label>
+          <input type="text" class="form-control" id="Education_u" placeholder="Enter your university">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Secondary School</label>
+          <input type="text" class="form-control" id="school" placeholder="Enter your school">
+        </div>
+
+        <!-- Places Lived -->
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-geo-alt-fill"></i>Current City</label>
+          <input type="text" class="form-control" id="city" placeholder="Enter your city">
+        </div>
+
+        <!-- Contact Info -->
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-telephone-fill"></i>Phone</label>
+          <input type="tel" class="form-control" id="num" placeholder="Enter your phone number">
+          <small class="text-muted"><i class="bi bi-lock-fill"></i> Only me</small>
+        </div>
+        <div class="mb-3">
+          <label class="form-label"><i class="bi bi-envelope-fill"></i>Email</label>
+          <input type="email" class="form-control" value="trupalpatel2712@gmail.com" disabled>
+          <small class="text-muted"><i class="bi bi-lock-fill"></i> Only me</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+  <script>
+    const url = 'http://localhost:3000/update-profile';
+    const data = {
+      user_id: 1
+    };
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data)
+
+        // Fill the form fields with fetched data
+        document.getElementById('work').value = data.data.profile.workExperience || '';
+        document.getElementById('Education_u').value = data.data.profile.university || '';
+        document.getElementById('school').value = data.data.profile.secondarySchool || '';
+        document.getElementById('city').value = data.data.profile.city || '';
+        document.getElementById('num').value = data.data.user.phoneNumber || '';
+      })
+      .catch(error => console.error('Error:', error));
+
+
+
+  </script>
+
+</body>
+
+</html>
