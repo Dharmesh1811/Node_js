@@ -100,6 +100,48 @@ app.post('/update-profile', upload.none(), (req, res) => {
 });
 
 
+// delete 
+app.delete('/delete-profile', upload.none(), (req, res) => {
+  const user_id = req.body.pid; // DELETE method માટે body માંથી લેવાયું છે
+
+  if (!user_id) {
+    return res.status(400).json({ msg: "User ID (pid) is required" });
+  }
+
+  const deleteProfileQuery = `
+    DELETE FROM u_profile
+    WHERE user_id = ?;
+  `;
+
+  con.query(deleteProfileQuery, [user_id], (err, profileResult) => {
+    if (err) {
+      console.error("Profile delete error:", err);
+      return res.status(500).send("Error deleting profile data");
+    }
+
+    const deleteUserQuery = `
+      DELETE FROM users
+      WHERE id = ?;
+    `;
+
+    con.query(deleteUserQuery, [user_id], (err, userResult) => {
+      if (err) {
+        console.error("User delete error:", err);
+        return res.status(500).send("Error deleting user data");
+      }
+
+      res.status(200).json({
+        msg: "success",
+        deleted: {
+          profileRows: profileResult.affectedRows,
+          userRows: userResult.affectedRows
+        }
+      });
+    });
+  });
+});
+
+
 
 //view-profile 
 
