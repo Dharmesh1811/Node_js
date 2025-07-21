@@ -27,7 +27,6 @@ app.post('/signup', upload.none(), (req, res) => {
 
 // Login API
 
-
 app.post('/login', upload.none(), (req, res) => {
     const { phoneNumber, password } = req.body;
 
@@ -105,8 +104,8 @@ app.post('/update-profile', upload.none(), (req, res) => {
 //view-profile 
 
 app.get('/view-profile', upload.none(), (req, res) => {
-  const { user_id } = req.query.pid;
-
+  const  user_id  = req.query.pid;
+   console.log(user_id)
   const profileQuery = `
     SELECT * FROM u_profile
     WHERE user_id = ?;

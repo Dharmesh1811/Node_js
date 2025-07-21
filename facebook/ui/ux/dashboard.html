@@ -14,6 +14,7 @@
     />
   </head>
   <body>
+
     <div class="container">
       <h1>Meet Other Defrant People</h1>
       <div class="row" id="user-detils"></div>
@@ -39,17 +40,24 @@
 
           data.data.map((item, index) => {
             console.log("hello");
-            userData.innerHTML += `<a href="">
+            userData.innerHTML += `
                 <div class="col-4 p-0" >
-                <div class="card p-4 m-2">
+                  <a class="nav-link" href="/ui/ux/profile.html" >
+                <div class="card p-4 m-2" onclick="setProfileId(${item.id})">
                    <h2>${item.firstName}-${item.surname}</h2>
                    <p>${item.gender}</p>
                 </div>
+                </a>
               </div>
-                </a>`;
+                `;
           });
         })
         .catch((error) => console.error("Error:", error));
+
+
+        function setProfileId(uid){
+          localStorage.setItem('profileId', uid);
+        }
     </script>
   </body>
 </html>
