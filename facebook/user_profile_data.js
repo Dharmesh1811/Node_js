@@ -101,7 +101,7 @@ app.post('/update-profile', upload.none(), (req, res) => {
 
 
 // delete 
-app.delete('/delete-profile', upload.none(), (req, res) => {
+app.post('/delete-profile', upload.none(), (req, res) => {
   const user_id = req.body.pid; // DELETE method માટે body માંથી લેવાયું છે
 
   if (!user_id) {

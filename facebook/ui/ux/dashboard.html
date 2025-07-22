@@ -14,10 +14,12 @@
     />
   </head>
   <body>
-
     <div class="container">
       <h1>Meet Other Defrant People</h1>
       <div class="row" id="user-detils"></div>
+      <div>
+        <a class="nav-link fw-bold" href="/ui/ux/profile.html">Add Profile</a>
+      </div>
     </div>
 
     <!-- Bootstrap JS -->
@@ -25,39 +27,72 @@
     <script>
       const url = "http://localhost:3000/users";
 
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json(); // Parse the JSON from the response
-        })
-        .then((data) => {
-          console.log("Success:", data);
-          //   front add
-          let userData = document.getElementById("user-detils");
-          userData.innerHTML = "";
+      function showAllUser() {
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json(); // Parse the JSON from the response
+          })
+          .then((data) => {
+            console.log("Success:", data);
 
-          data.data.map((item, index) => {
-            console.log("hello");
-            userData.innerHTML += `
+            //   front add
+            let userData = document.getElementById("user-detils");
+            userData.innerHTML = "";
+
+            data.data.map((item, index) => {
+              console.log("hello");
+              userData.innerHTML += `
                 <div class="col-4 p-0" >
                   <a class="nav-link" href="/ui/ux/profile.html" >
                 <div class="card p-4 m-2" onclick="setProfileId(${item.id})">
                    <h2>${item.firstName}-${item.surname}</h2>
                    <p>${item.gender}</p>
+                  
                 </div>
                 </a>
+                 <button class="btn btn-danger" onclick="removeUser(${item.id})">remove</button>
               </div>
                 `;
-          });
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+      showAllUser();
+
+      function setProfileId(uid) {
+        localStorage.setItem("profileId", uid);
+      }
+
+      function removeUser(pid) {
+        let url = `http://localhost:3000/delete-profile`;
+        const data = {
+          pid: pid,
+        };
+
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         })
-        .catch((error) => console.error("Error:", error));
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Success:", data);
+            showAllUser();
+            // Fill the form fields with fetched data
+          })
 
-
-        function setProfileId(uid){
-          localStorage.setItem('profileId', uid);
-        }
+          .catch((error) => console.error("Error:", error));
+      }
     </script>
   </body>
 </html>
